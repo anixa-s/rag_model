@@ -18,7 +18,7 @@ DATA_PATH = "C:\Anika Singh\Glenforest Secondary School\Grade 10 MYP5\Personal P
 loader = PyPDFDLoader(DATA_PATH)
 documents = loader.load()
 print(len(documents))
-print(documents
+print(documents)
 """
 
 # My Ollama Key: C:\Users\<username>\.ollama\id_ed25519.pub
