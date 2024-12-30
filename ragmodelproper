@@ -1,0 +1,56 @@
+from langchain.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import PyPDFDirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema import Document
+from langchain_core.output_parsers import StrOutputParser
+from langchain_community.llms import Ollama
+from langchain.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain.prompts import ChatPromptTemplate 
+from dotenv import load_dotenv
+import os
+import shutil
+
+""" 
+This was not working because the wrong library was being used to load the file(s). Directory should always be used. 
+However, if you use a "for" loop, it should work.
+DATA_PATH = "C:\Anika Singh\Glenforest Secondary School\Grade 10 MYP5\Personal Project\Documents\.venv\data"
+loader = PyPDFDLoader(DATA_PATH)
+documents = loader.load()
+print(len(documents))
+print(documents
+"""
+
+# My Ollama Key: C:\Users\<username>\.ollama\id_ed25519.pub
+llm = Ollama(model="llama3", temperature = 0.7)
+embedding = HuggingFaceEmbeddings()
+
+# Running a test to see if the LLM model (llama3) works
+response = llm.invoke("Tell me a cat joke.")
+print(response) 
+
+# Loading my documents and printing the length of it as a test
+DATA_PATH = "C:\Anika Singh\Glenforest Secondary School\Grade 10 MYP5\Personal Project\Documents\.venv\data"
+loader = PyPDFDirectoryLoader(DATA_PATH)
+documents = loader.load()
+print(f"The length of the document is {len(documents)}")
+
+# Splitting the PDFs into chunks of text 
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=300,
+    chunk_overlap=100,
+    length_function=len,
+    add_start_index=True,
+)
+chunks = text_splitter.split_documents(documents)
+print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
+
+"""
+Testing the print out of my chunks 
+
+print(chunks[0])
+print()
+print(chunks[1])
+print() 
+print(chunks[50])
+"""
