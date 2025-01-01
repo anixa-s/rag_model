@@ -1,0 +1,82 @@
+from langchain.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import PyPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema import Document
+from langchain_core.output_parsers import StrOutputParser
+from langchain_openai.chat_models import ChatOpenAI
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+from langchain.prompts import ChatPromptTemplate 
+from dotenv import load_dotenv
+import os
+import shutil
+
+OPEN_AI_KEY = "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"
+CHROMA_PATH = "lib/site-package"
+DATA_PATH = "data/ee_subjectbrief_en.pdf"
+embeddings = OpenAIEmbeddings()
+
+# Load environment variables. Assumes that project contains .env file with API keys
+load_dotenv()
+model = ChatOpenAI(api_key = OPEN_AI_KEY, model = "gpt-4o-mini")
+
+def main():
+    generate_data_store()   
+
+
+def generate_data_store():
+    documents = load_documents()
+    chunks = split_text(documents)
+    save_to_chroma(chunks)
+
+
+def load_documents():
+    txt_file_path = DATA_PATH
+    loader = PyPDFLoader(file_path=txt_file_path, encoding="utf-8")
+    data = loader.load()
+
+
+def split_text(documents: list[Document]):
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=300,
+        chunk_overlap=100,
+        length_function=len,
+        add_start_index=True,
+    )
+    chunks = text_splitter.split_documents(documents)
+    print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
+
+    document = chunks[10]
+    print(document.page_content)
+    print(document.metadata)
+
+def save_to_chroma(chunks: list[Document]):
+    # Clear out the database first 
+    if os.path.exists(CHROMA_PATH):
+        shutil.rmtree(CHROMA_PATH)
+
+    # Create a new DB from the documents.
+    db = Chroma.from_documents(
+        chunks, OpenAIEmbeddings(), persist_directory=CHROMA_PATH
+    )
+    db.persist()
+    print(f"Saved {len(chunks)} chunks to {CHROMA_PATH}.")
+
+# Prompt template that the LLM will adhere to when generating responses 
+template = """
+Answer the question based on the context below. If you cant't answer the question, reply "I don't know". 
+
+Context: {context}
+Question: {question}
+"""
+prompt = ChatPromptTemplate.from_template(template)
+prompt.format(context="Mary's sister is Susana", question="Who is Mary's sister?")
+parser = StrOutputParser() 
+chain = prompt | model | parser
+chain.invoke({
+    "context": "Mary's sister is Susana",
+    "question": "Who is Mary's sister?"
+})
+chain.invoke("What MLB team won the World Series during the COVID-19 pandemic?")
+
+main()
