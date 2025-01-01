@@ -1,0 +1,104 @@
+"""
+pip install langchain
+pip install chromadb
+pip install PyPDFLoader
+pip install ollama
+pip install sentence-transformers
+pip install pandas 
+pip install openai (never turned out using it)
+"""
+from langchain.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import PyPDFDirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema import Document
+from langchain_core.output_parsers import StrOutputParser
+from langchain_community.llms import Ollama
+from langchain.vectorstores import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain.prompts import ChatPromptTemplate 
+from dotenv import load_dotenv
+import os
+import shutil
+import chromadb
+
+""" 
+This was not working because the wrong library was being used to load the file(s). Directory should always be used. 
+However, if you use a "for" loop, it should work.
+DATA_PATH = "C:\Anika Singh\Glenforest Secondary School\Grade 10 MYP5\Personal Project\Documents\.venv\data"
+loader = PyPDFDLoader(DATA_PATH)
+documents = loader.load()
+print(len(documents))
+print(documents)
+"""
+
+# Setting up API Key 
+load_dotenv()
+OLLAMA_API_KEY = os.getenv("")
+
+# My Ollama Key: C:\Users\<username>\.ollama\id_ed25519.pub
+llm = Ollama(model="llama3.2", temperature = 0.0)
+embedding = HuggingFaceEmbeddings()
+
+# Running a test to see if the LLM model (llama3) works
+response = llm.invoke("Tell me a cat joke.")
+print(response) 
+
+# Loading my documents and printing the length of it as a test
+DATA_PATH = "C:\Anika Singh\Glenforest Secondary School\Grade 10 MYP5\Personal Project\Documents\.venv\data"
+loader = PyPDFDirectoryLoader(DATA_PATH)
+documents = loader.load()
+print(f"The length of the document is {len(documents)}")
+
+# Splitting the PDFs into chunks of text 
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=300,
+    chunk_overlap=100,
+    length_function=len,
+    add_start_index=True,
+)
+chunks = text_splitter.split_documents(documents)
+print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
+
+"""
+Testing the print out of my chunks 
+
+print(chunks[0])
+print()
+print(chunks[1])
+print() 
+print(chunks[50])
+"""
+
+# Creating ChromaDB for chunkings and embeddings 
+client = chromadb.Client()
+collection = client.create_collection("document_collection")
+
+from transformers import AutoTokenizer, AutoModel
+import torch
+tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
+model = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
+def get_embeddings(texts):
+     inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
+     with torch.no_grad():
+     embeddings = model(**inputs).last_hidden_state.mean(dim=1)
+     return embeddings
+    # Index documents
+embedding = get_embeddings(documents)
+
+collection.add(
+    ids = 
+    documents = DATA_PATH
+    embedding = embedding
+)
+
+from transformers import pipeline
+
+qa_model = pipeline("question-answering", model="deepset/roberta-base-squad2")
+
+qa_input = {
+ “question”: question,
+ “context”: context
+}
+
+result = qa_model(qa_input)
+print(result)
