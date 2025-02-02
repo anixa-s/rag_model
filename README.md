@@ -22,4 +22,5 @@
 <li>pip install ollama</li>
 <li>pip install sentence-transformers</li>
 <li>pip install dotenv</li>
+<li>pip install langchain-community</li>
 </body>
