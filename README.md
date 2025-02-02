@@ -18,7 +18,7 @@
 <body> 
 <li>pip install langchain</li>
 <li>pip install chromadb</li>
-<li>pip install pypdf</li>
+<li>pip install pypdf or pip install pypdfloader</li>
 <li>pip install ollama</li>
 <li>pip install sentence-transformers</li>
 <li>pip install dotenv</li>
