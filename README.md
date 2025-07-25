@@ -21,13 +21,13 @@ This project uses a Retrieval-Augmented Generation (RAG) approach to extract and
 <h3> Here's how to install the required dependencies: </h3>
 <ol>
   <li> Clone the repository </li>
-      ```shell
+      ```
       git clone https://github.com/anixa-s/rag_model.git
       cd rag_model
       ```
  
   <li> Now run this command to install dependenies in the requirements.txt file. </li> 
-       ```shell
+       ```
        pip install -r requirements.txt
        ```
 
