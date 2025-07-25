@@ -18,14 +18,11 @@ This project uses a Retrieval-Augmented Generation (RAG) approach to extract and
 </ul>
 
 <h1> Setup Instructions (From Scratch) </h1>
+
+## Install requireds dependencies with: 
+
 ```python
 pip install -r requirements.txt
-```
-
-3. Install markdown depenendies with: 
-
-```python
-pip install "unstructured[md]"
 ```
 
 ## Create database
