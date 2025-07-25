@@ -19,18 +19,35 @@ This project uses a Retrieval-Augmented Generation (RAG) approach to extract and
 
 <h1> Setup Instructions (From Scratch) </h1>
 
-## Install requireds dependencies with: 
+## Clone the Repository 
 
-```python
+```bash
+git clone https://github.com/anixa-s/rag_model.git
+cd rag_model
+```
+
+## Create and Activate a Virtual Environment
+
+```bash
+# On Mac/Linux
+python3 -m venv venv
+source venv/bin/activate
+
+# On Windows
+python -m venv venv
+venv\Scripts\activate
+```
+
+## Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Create database
-
-Create the Chroma DB.
-
-```python
-python create_database.py
+## Set Up API Keys
+Create a .env file in the root directory and add your OpenAI API key:
+```ini
+OPENAI_API_KEY=your_api_key_here
 ```
 
 ## Query the database
@@ -38,9 +55,7 @@ python create_database.py
 Query the Chroma DB.
 
 ```python
-python query_data.py "How does Alice meet the Mad Hatter?"
+python query_data.py "“How is the IB EE assessed?”
 ```
+> You can get an API key from https://platform.openai.com/account/api-keys
 
-> You'll also need to set up an OpenAI account (and set the OpenAI key in your environment variable) for this to work.
-
-Here is a step-by-step tutorial video: [RAG+Langchain Python Project: Easy AI/Chat For Your Docs](https://www.youtube.com/watch?v=tcqEUSNCn8I&ab_channel=pixegami).
