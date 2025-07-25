@@ -55,7 +55,7 @@ OPENAI_API_KEY=your_api_key_here
 Query the Chroma DB.
 
 ```python
-python query_data.py "“How is the IB EE assessed?”
+python query_data.py "How is the IB EE assessed?”
 ```
 > You can get an API key from https://platform.openai.com/account/api-keys
 
