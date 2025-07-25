@@ -16,3 +16,8 @@ The RAG model is built to help:
  <li>Fast semantic retrieval with embeddinGS</li>
  <li> Customizable for any subject or PDF</li>
 </ul>
+
+<h1> Setup Instructions (From Scratch) </h1>
+Here's how to install the required dependencies:
+```shell
+pip install -r requirements.txt
