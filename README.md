@@ -3,8 +3,8 @@ This project uses a Retrieval-Augmented Generation (RAG) approach to extract and
 
 <h1> Problem Being Solved </h1>
 The RAG model is built to help: 
-<ol> 
+<ul> 
  <li>IB students quickly find key concepts, definitions, and explanations from large PDF files </li>
  <li>Educators and tutors retrieve accurate info from syllabi and IB guides </li>
  <li>Anyone working with long, academic PDFs that are too time-consuming to search manually</li>
-</ol>
+</ul>
