@@ -8,3 +8,11 @@ The RAG model is built to help:
  <li>Educators and tutors retrieve accurate info from syllabi and IB guides </li>
  <li>Anyone working with long, academic PDFs that are too time-consuming to search manually</li>
 </ul>
+
+<h1> Features </h1>
+<ul> 
+ <li>Question-answering over PDFs using LLM + vector store </li>
+ <li>Chunking of long documents for optimized search </li>
+ <li>Fast semantic retrieval with embeddinGS</li>
+ <li> Customizable for any subject or PDF</li>
+</ul>
