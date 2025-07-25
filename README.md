@@ -32,3 +32,5 @@ This project uses a Retrieval-Augmented Generation (RAG) approach to extract and
        ```
 
 </ol>
+```
+pip install -r requirements.txt```
