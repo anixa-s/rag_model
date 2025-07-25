@@ -18,19 +18,32 @@ This project uses a Retrieval-Augmented Generation (RAG) approach to extract and
 </ul>
 
 <h1> Setup Instructions (From Scratch) </h1>
-<h3> Here's how to install the required dependencies: </h3>
-<ol>
-  <li> Clone the repository </li>
-      ```
-      git clone https://github.com/anixa-s/rag_model.git
-      cd rag_model
-      ```
- 
-  <li> Now run this command to install dependenies in the requirements.txt file. </li> 
-       ```
-       pip install -r requirements.txt
-       ```
-
-</ol>
+```python
+pip install -r requirements.txt
 ```
-pip install -r requirements.txt```
+
+3. Install markdown depenendies with: 
+
+```python
+pip install "unstructured[md]"
+```
+
+## Create database
+
+Create the Chroma DB.
+
+```python
+python create_database.py
+```
+
+## Query the database
+
+Query the Chroma DB.
+
+```python
+python query_data.py "How does Alice meet the Mad Hatter?"
+```
+
+> You'll also need to set up an OpenAI account (and set the OpenAI key in your environment variable) for this to work.
+
+Here is a step-by-step tutorial video: [RAG+Langchain Python Project: Easy AI/Chat For Your Docs](https://www.youtube.com/watch?v=tcqEUSNCn8I&ab_channel=pixegami).
