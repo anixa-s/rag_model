@@ -1,4 +1,4 @@
-<h1> RAG Model for Efficient PDF Information Retrieval </h1>
+<h1> **RAG Model for Efficient PDF Information Retrieval** </h1>
 This project uses a Retrieval-Augmented Generation (RAG) approach to extract and answer questions from long PDF documents, specifically targeted at helping students and educators quickly sift through dense International Baccalaureate (IB) material. Instead of spending hours skimming through IB study guides, past papers, or handbooks, this tool lets you ask natural-language questions and get instant, relevant answers—saving time and boosting productivity.
 
 <h1> Problem Being Solved </h1>
@@ -23,10 +23,9 @@ Here's how to install the required dependencies:
   <li> Clone the repository </li>
  ```shell
  git clone https://github.com/anixa-s/rag_model.git
- cd rag_model
- ```
+ cd rag_model ```
+ 
   <li> Now run this command to install dependenies in the requirements.txt file. </li> 
  ```shell
-pip install -r requirements.txt
- ```
+ pip install -r requirements.txt```
 </ol>
