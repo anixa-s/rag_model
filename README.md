@@ -19,7 +19,14 @@ The RAG model is built to help:
 
 <h1> Setup Instructions (From Scratch) </h1>
 Here's how to install the required dependencies:
-
-```shell
+<ol>
+  <li> Clone the repository </li>
+ ```shell
+ git clone https://github.com/anixa-s/rag_model.git
+ cd rag_model
+ ```
+  <li> Now run this command to install dependenies in the requirements.txt file. </li> 
+ ```shell
 pip install -r requirements.txt
-```
+ ```
+</ol>
