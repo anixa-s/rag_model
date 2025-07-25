@@ -1,26 +1,10 @@
-<h3> The project was completed with the following libraries and packages: </h3>
-<body>
-<li>from langchain.document_loaders import DirectoryLoader</li>
-<li>from langchain_community.document_loaders import PyPDFDirectoryLoader</li>
-<li>from langchain.text_splitter import RecursiveCharacterTextSplitter</li>
-<li>from langchain.schema import Document</li>
-<li>from langchain_core.output_parsers import StrOutputParser</li>
-<li>from langchain_community.llms import Ollama</li>
-<li>from langchain.vectorstores import Chroma</li>
-<li>from langchain_community.embeddings import HuggingFaceEmbeddings</li>
-<li>from langchain.prompts import ChatPromptTemplate</li>
-<li>from dotenv import load_dotenv</li>
-<li>import os</li>
-<li>import shutil</li>
-</body>
+<h1> RAG Model for Efficient PDF Information Retrieval <h1>
+This project uses a Retrieval-Augmented Generation (RAG) approach to extract and answer questions from long PDF documents, specifically targeted at helping students and educators quickly sift through dense International Baccalaureate (IB) material. Instead of spending hours skimming through IB study guides, past papers, or handbooks, this tool lets you ask natural-language questions and get instant, relevant answers—saving time and boosting productivity.
 
-<h3> Install the following in your VS Code terminal: </h3>
-<body> 
-<li>pip install langchain</li>
-<li>pip install chromadb</li>
-<li>pip install pypdf</li>
-<li>pip install ollama</li>
-<li>pip install sentence-transformers</li>
-<li>pip install dotenv</li>
-<li>pip install langchain-community</li>
-</body>
+<h1> Problem Being Solved <h1>
+The RAG model is built to help: 
+<ol> 
+ <li>IB students quickly find key concepts, definitions, and explanations from large PDF files </li>
+<li>Educators and tutors retrieve accurate info from syllabi and IB guides </li>
+<li>Anyone working with long, academic PDFs that are too time-consuming to search manually</li>
+</ol>
