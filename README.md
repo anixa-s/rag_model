@@ -19,5 +19,7 @@ The RAG model is built to help:
 
 <h1> Setup Instructions (From Scratch) </h1>
 Here's how to install the required dependencies:
+
 ```shell
 pip install -r requirements.txt
+```
