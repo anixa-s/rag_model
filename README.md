@@ -49,6 +49,7 @@ Create a .env file in the root directory and add your OpenAI API key:
 ```ini
 OPENAI_API_KEY=your_api_key_here
 ```
+> You can get an API key from https://platform.openai.com/account/api-keys
 
 ## Query the database
 
@@ -57,5 +58,4 @@ Query the Chroma DB.
 ```python
 python query_data.py "How is the IB EE assessed?”
 ```
-> You can get an API key from https://platform.openai.com/account/api-keys
 
